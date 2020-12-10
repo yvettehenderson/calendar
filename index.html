@@ -31,16 +31,15 @@
 
     <div class="container">
       <div id="9" class="hour row">09AM</div>
-      <div id="10" class="hour row">10AM</div> 
+      <div id="10" class="hour row">10AM</div>
       <div id="11" class="hour row">11AM</div>
-      <div id="12" class="hour row">12PM</div>        
+      <div id="12" class="hour row">12PM</div>
       <div id="13" class="hour row">01PM</div>
       <div id="14" class="hour row">02PM</div>
-      <div id="15" class="hour row">03PM</div> 
+      <div id="15" class="hour row">03PM</div>
       <div id="16" class="hour row">04PM</div>
       <div id="17" class="hour row">05PM</div>
-      <div id="18" class="hour row">06PM</div>               
-       
+      <div id="18" class="hour row">06PM</div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -61,35 +60,36 @@
 
       function saveNoteEventListener() {
         $(document).on("click", ".saveBtn", function () {
-          //  tasks.append($(this).attr('data-time-slot'));
+          // tasks.append($(this).attr('data-time-slot'));
 
           localStorage.setItem("tasks", JSON.stringify(tasks));
         });
       }
       //   saveNoteEventListener()
 
-    
-      const now = moment().hour();
-      for (let i = 9; i < 19; i++) {
-        const div$ = $("#" + i).addClass("time-block row");
-        const notes$ = $("<textarea>").addClass("textarea");
-        notes$.val(tasks[i])
-        if (now > i) {
-          notes$.addClass("present");
-        } else if (now < i) {
-          notes$.addClass("future");
-        } else {
-          notes$.addClass("present");
-        }
+      function timeRows() {
+        const now = moment().hour();
+        for (let i = 9; i < 19; i++) {
+          const div$ = $("#" + i).addClass("time-block row");
+          const notes$ = $("<textarea>").addClass("textarea");
+          notes$.val(tasks[i]);
+          if (now > i) {
+            notes$.addClass("present");
+          } else if (now < i) {
+            notes$.addClass("future");
+          } else {
+            notes$.addClass("present");
+          }
 
-        const button$ = $("<button>")
-          .addClass("saveBtn")
-          .text("Save")
-          .attr("data-time-slot", i);
-        div$.append(notes$, button$);
-        $(".container").append(div$);
-        $(`#${i}`).append(div$);
+          const button$ = $("<button>")
+            .addClass("saveBtn")
+            .text("Save")
+            .attr("data-time-slot", i);
+          div$.append(notes$, button$);
+          $(`#${i}`).append(div$);
+        }
       }
+      timeRows();
     </script>
   </body>
 </html>
