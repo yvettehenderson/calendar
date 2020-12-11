@@ -60,12 +60,14 @@
 
       function saveNoteEventListener() {
         $(document).on("click", ".saveBtn", function () {
-          // tasks.append($(this).attr('data-time-slot'));
-
+          // console.log(" you clicked on save");
+          var input = $(this).siblings("textarea").val();
+          var hour = $(this).attr("data-time-slot");
+          tasks[hour] = input;
           localStorage.setItem("tasks", JSON.stringify(tasks));
         });
       }
-      //   saveNoteEventListener()
+      saveNoteEventListener();
 
       function timeRows() {
         const now = moment().hour();
