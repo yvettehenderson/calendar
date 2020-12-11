@@ -60,7 +60,7 @@
 
       function saveNoteEventListener() {
         $(document).on("click", ".saveBtn", function () {
-          // console.log(" you clicked on save");
+          console.log(" you clicked on save");
           var input = $(this).siblings("textarea").val();
           var hour = $(this).attr("data-time-slot");
           tasks[hour] = input;
